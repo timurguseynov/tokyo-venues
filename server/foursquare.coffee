@@ -1,0 +1,1 @@
+# foursquare = require('node-foursquare-venues')('clientId', 'secretId')

@@ -1,0 +1,77 @@
+head
+
+body
+  +layout
+
+template(name='layout')
+  .container-fluid
+    .row
+      .col-sm-10
+        h1 Foursquare App
+      .col-sm-2
+        +loginButtons
+        
+    if user
+      +venues 
+
+template(name='venues')
+
+
+    .row.queries-wrapper
+      .col-sm-12
+        table.table
+          tr
+            th Query
+            th Latitude
+            th Longitude
+            th Radius
+            th Date
+          each queries
+            tr
+              td #{query}
+              td #{lat}
+              td #{lng}
+              td #{radius}
+              td #{date}
+
+
+
+    .row.search-wrapper
+      .col-sm-10
+        .form-group
+          input.form-control#search(type='text' placeholder='Search')
+      .col-sm-2 
+        .form-group
+          select.form-control#radius(placeholder="Radius")
+            each radiusArr
+              option(value="#{this}") #{this}
+
+
+
+    .row.map-wrapper
+      .col-sm-12          
+        #map
+          
+    .row.venues-wrapper
+      .col-sm-10
+        h2 #{count} Venues  
+      .col-sm-2
+        button.btn.btn-default.btn-block.btn-export Export CSV
+      .col-sm-12  
+        table.table
+          tr
+            th Name
+            th City
+            th Street Address
+            th Latitude
+            th Longitude
+
+          each venues
+            tr
+              td #{name}
+              with location
+                td #{city}
+                td #{address}
+                td #{lat}
+                td #{lng}
+
